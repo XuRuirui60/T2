@@ -79,7 +79,7 @@ void setup() {
   display.print("C219");      // 顯示字串 "C201"
   display.display();          // 更新顯示內容
 }
-int Down = false;
+
 bool BlueBreath = false;
 bool Rainbow = false;
 bool RYGB = false;
@@ -231,6 +231,8 @@ void loop() {
           if (buttonEnterState == LOW) {
             btMillis = currentMillis;
             display.clearDisplay();
+            for (int i = 0; i <= 7; i++)
+              strip.setPixelColor(i, strip.Color(0, 0, 0));
             Light();
             display.display();
             page = 40;
@@ -289,7 +291,6 @@ void loop() {
             display.setCursor(110, 17);
             display.print("R");
             display.display();
-            BlueBreath = false;
             Rainbow = false;
             RYGB = false;
             RYG = true;
@@ -992,14 +993,14 @@ void Light() {
   display.print("L6");
   if (l7 == true)
     strip.setPixelColor(6, strip.Color(10, 10, 10));
-    display.fillRect(66, 39, 24, 16, l7);
-    display.setTextColor(!l7);
-    display.setCursor(67, 40);
-    display.print("L7");
-    if (l8 == true)
-      strip.setPixelColor(7, strip.Color(255, 255, 255));
-    display.fillRect(95, 39, 24, 16, l8);
-    display.setTextColor(!l8);
-    display.setCursor(96, 40);
-    display.print("L8");
-  }
+  display.fillRect(66, 39, 24, 16, l7);
+  display.setTextColor(!l7);
+  display.setCursor(67, 40);
+  display.print("L7");
+  if (l8 == true)
+    strip.setPixelColor(7, strip.Color(255, 255, 255));
+  display.fillRect(95, 39, 24, 16, l8);
+  display.setTextColor(!l8);
+  display.setCursor(96, 40);
+  display.print("L8");
+}
